@@ -15,7 +15,7 @@ WORKDIR /var/www/html
 # 换源
 # RUN rm /etc/apt/sources.list
 
-ADD sources.list /etc/apt/
+# ADD sources.list /etc/apt/
 
 # 扩展安装
 RUN apt-get update\
