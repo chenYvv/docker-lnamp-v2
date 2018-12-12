@@ -23,7 +23,7 @@ services:
       - ./app/app1:/usr/share/nginx/html
       - ./nginx/app1/conf.d/:/etc/nginx/conf.d/
       # - ./nginx/app1/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/app1/log/app1:/var/log/nginx/
+      - ./nginx/app1/log:/var/log/nginx/
     restart: always
     networks:
       - default 
