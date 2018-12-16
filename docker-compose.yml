@@ -1,7 +1,7 @@
 version: '3'
 services:
   nginx:
-    container_name: service-nginx
+    container_name: nginx
     image: nginx:1.15.7
     ports:
       - "8000:80"
@@ -15,7 +15,7 @@ services:
       - default
 
   app1-nginx:
-    container_name: app1-nginx
+    container_name: app1
     image: nginx:1.15.7
     ports:
       - "8002:80"
@@ -29,7 +29,7 @@ services:
       - default 
 
   app2-apache:
-    container_name: app2-apache
+    container_name: app2
     image: php:7.2-apache
     ports:
       - "8001:80"
@@ -59,8 +59,22 @@ services:
   #   volumes:
   #     - ./app:/var/www/html
   #     - ./php72-alpine/php.ini:/usr/local/etc/php/php.ini
-  #   restart: always    
+  #   restart: always
 
+  mysql57:
+    container_name: mysql57
+    image: mysql:5.7.24
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./mysql57/conf.d/:/etc/mysql/conf.d/"
+      - "./mysql57/data:/var/lib/mysql/"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1122334
+    restart: always
+    networks:
+      - default
+      
   redis:
     container_name: redis
     image: redis:alpine
