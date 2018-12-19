@@ -3,12 +3,6 @@ FROM php:7.2.12-fpm
 # redis 版本
 # ENV PHPREDIS_VERSION 3.1.6
 
-# 安装composer
-# COPY composer.phar /usr/local/bin/composer
-
-# 换源文件
-# COPY sources.list /etc/apt/china.sources.list
-
 # 工作目录
 WORKDIR /var/www/html
 
