@@ -14,7 +14,7 @@ services:
     networks:
       - default
 
-  app1-nginx:
+  app1:
     container_name: app1
     image: nginx:1.15.7
     ports:
@@ -28,7 +28,7 @@ services:
     networks:
       - default 
 
-  app2-apache:
+  app2:
     container_name: app2
     image: php:7.2-apache
     ports:
