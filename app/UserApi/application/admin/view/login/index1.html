@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>卡游SSO登录</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="//g.alicdn.com/dingding/dinglogin/0.0.5/ddLogin.js"></script>
+    <script src="//g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js"></script>
+    <link rel="stylesheet" href="/public/static/magic-check/css/magic-check.css">
+    <link rel="stylesheet" href="/public/common/css/login/index.css">
+<!-- 
+  <link href="./icheck-1.x/demo/css/custom.css?v=1.0.2" rel="stylesheet">
+  <link href="./icheck-1.x/skins/all.css?v=1.0.2" rel="stylesheet">
+  <script src="./icheck-1.x/demo/js/jquery.js"></script>
+  <script src="./icheck-1.x/icheck.js?v=1.0.2"></script>
+  <script src="./icheck-1.x/demo/js/custom.min.js?v=1.0.2"></script> -->
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- log -->
+      <div class="row logo">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 text-center">
+          <img src="__AMAZE__/assets/i/login-logo.png">
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+      
+      <!-- 选项卡 -->
+      <div class="row select">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 text-center">
+          <div style="width: 368px;margin: 0 auto;">
+            <div style="display: inline-block;">
+              <a href="javascript:void(0);"><div style="margin-right: 32px" class="selected" >钉钉扫码登录</div></a>
+              <a href="javascript:void(0);"><div >账号密码登录</div></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+      
+      <!-- 钉钉 -->
+      <div class="row" id="dingding" style="text-align: center;">
+        
+      </div>
+      
+      <!-- form表单 -->
+      <div class="row login_form"  style="display: none;">
+        <form action="" class="am-form" method="post" data-am-validator>
+          <div class="col-md-3"></div>
+          <div class="col-md-6 text-center">
+            <div style="width: 368px;margin: 0 auto;">
+
+            <input type="hidden" name="dosubmit" value="1">
+            <input type="hidden" name="url" value="{$url}">
+
+            <!-- 后台错误提示 -->
+            <div class="notice">
+              <div style="position: relative;">
+                <span style="position: absolute;top: 53%;left: 16px;transform: translateY(-50%);color: #f5222d;">
+                  <i class="anticon anticon-close-circle ant-alert-icon"><svg viewBox="64 64 896 896" class="" data-icon="close-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 0 1-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"></path></svg></i>
+                </span>
+                <div></div>
+              </div>
+            </div>
+
+              <div style="margin: 0 2px 24px;">
+                <div style="position: relative;">
+                  <span style="position: absolute;top: 50%;left: 12px;transform: translateY(-50%);color: rgba(0,0,0,.25);">
+                    <i class="anticon anticon-user antd-pro-components-login-index-prefixIcon"><svg viewBox="64 64 896 896" class="" data-icon="user" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M858.5 763.6a374 374 0 0 0-80.6-119.5 375.63 375.63 0 0 0-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-.4.2-.8.3-1.2.5-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 0 0-80.6 119.5A371.7 371.7 0 0 0 136 901.8a8 8 0 0 0 8 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 0 0 8-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"></path></svg></i>
+                  </span>
+                  <input type="" onkeyup="EnterLogin()" name="username" id="username" placeholder="用户名:" >
+                </div>
+                <div style="text-align: left;color: red;display: none;" id="usernameErr"></div>
+              </div>
+
+            <div style="margin: 0 2px 24px;">
+              <div style="position: relative;">
+                <span style="position: absolute;top: 50%;left: 12px;transform: translateY(-50%);color: rgba(0,0,0,.25);">
+                  <i class="anticon anticon-lock antd-pro-components-login-index-prefixIcon"><svg viewBox="64 64 896 896" class="" data-icon="lock" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 464h-68V240c0-70.7-57.3-128-128-128H388c-70.7 0-128 57.3-128 128v224h-68c-17.7 0-32 14.3-32 32v384c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V496c0-17.7-14.3-32-32-32zM332 240c0-30.9 25.1-56 56-56h248c30.9 0 56 25.1 56 56v224H332V240zm460 600H232V536h560v304zM484 701v53c0 4.4 3.6 8 8 8h40c4.4 0 8-3.6 8-8v-53a48.01 48.01 0 1 0-56 0z"></path></svg></i>
+                </span>
+                <input type="password" onkeyup="EnterLogin()" name="password" id="password" placeholder="密码:">
+              </div>
+                <div style="text-align: left;color: red;display: none;" id="passwordErr"></div>
+            </div>
+
+              <div style="font-size: 14px">
+                <div style="float: left;">
+                  <input class="magic-checkbox" type="checkbox" name="autologin" id="autologin">
+                  <label for="autologin">自动登录</label>
+                </div>
+                <div style="float: right;font-size: 12px;margin-top: 1px;color: #FF4500">
+                  忘记密码? 请联系管理员
+                </div>
+              </div>
+
+              <button type="button" class="login-btn">登 录</button>
+
+            </div>
+          </div>
+          <div class="col-md-3"></div>
+        </form>
+      </div>
+
+      <!-- 底部 -->
+      <div class="row"></div>
+
+
+    </div>
+    
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
+    <script>
+      // 表单转对象
+      $.fn.serializeObject = function()
+      {
+          var o = {};
+          var a = this.serializeArray();
+          $.each(a, function() {
+              if (o[this.name] !== undefined) {
+                  if (!o[this.name].push) {
+                      o[this.name] = [o[this.name]];
+                  }
+                  o[this.name].push(this.value || '');
+              } else {
+                  o[this.name] = this.value || '';
+              }
+          });
+          return o;
+      };
+
+
+      // 选项卡
+      $('.select a div').click(function(){
+          if( !$(this).hasClass("selected") ){
+              $('.select a div').removeClass("selected");
+              $(this).addClass("selected");
+              if($("#dingding").is(":hidden")){
+                  $("#dingding").show();
+                  $(".login_form").hide();
+              }else{
+                  $("#dingding").hide();
+                  $(".login_form").show();
+              }
+          }
+      });
+
+      // 监听输入
+      $("input").bind('input propertychange',function(){
+        if ( this.id == 'username' ) {
+          if ( this.value.length == 0 ) {
+            $('#usernameErr').text('请输入用户名！').fadeIn();
+            $('#username').addClass('login_input_err');
+          }else{
+            $('#usernameErr').fadeOut();
+            $('#username').removeClass('login_input_err');
+          }
+        }
+        if ( this.id == 'password' ) {
+          if ( this.value.length == 0 ) {
+            $('#passwordErr').text('请输入密码！').fadeIn();
+            $('#password').addClass('login_input_err');
+          }else{
+            $('#passwordErr').fadeOut();;
+            $('#password').removeClass('login_input_err');
+          }
+        }
+      });
+
+      // 错误显示
+      function checkInput(){
+        var ajax_data = $("form").serializeObject();
+        var tag = true;
+        if ( ajax_data['username'].length == 0 ) {
+            $('#usernameErr').text('请输入用户名！').fadeIn();
+            $('#username').addClass('login_input_err');
+            tag = false;
+        }
+        if ( ajax_data['password'].length == 0 ) {
+            $('#passwordErr').text('请输入密码！').fadeIn();
+            $('#password').addClass('login_input_err');
+            tag = false;
+        }
+        return tag;
+      }
+
+      function EnterLogin(){
+          if(event.keyCode == 13){
+              $('button').click();
+          }
+      }
+
+      // 登录
+      $('button').on("click",function(){
+          if ( checkInput() ) {
+            var ajax_data = $("form").serializeObject();
+            $.ajax({
+                type: "POST",
+                url: '{:url("login/index")}',
+                data: ajax_data,
+                dataType: "json",
+                success: function(r){
+                  if ( r.status == 0 ) {
+                    $(".notice").show();
+                    $(".notice div div").text(r.info);
+                  }else if( r.status == 1 ){
+                    console.log(r);
+                    window.location.href = r.data.redirect;
+                  }
+                }
+            });
+          }
+      })
+
+
+      var obj = DDLogin({
+          id:"dingding",//这里需要你在自己的页面定义一个HTML标签并设置id，例如<div id="login_container"></div>或<span id="login_container"></span>
+          goto: "{$goto}",
+          style: "border:0px;",
+          width : "300px",
+          height: "300px"
+      });
+
+      var hanndleMessage = function (event) {
+          var origin = event.origin;
+          if( origin == "https://login.dingtalk.com" ) { //判断是否来自ddLogin扫码事件。
+              var loginTmpCode = event.data; //拿到loginTmpCode后就可以在这里构造跳转链接进行跳转了
+              if(typeof loginTmpCode =='string'){
+                  window.location.href = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid={$arr.appId}&response_type=code&scope=snsapi_login&state={$url}&redirect_uri={$arr.url}&loginTmpCode="+loginTmpCode;
+              }
+          }
+
+      };
+      if (typeof window.addEventListener != 'undefined') {
+          window.addEventListener('message', hanndleMessage, false);
+      } else if (typeof window.attachEvent != 'undefined') {
+          window.attachEvent('onmessage', hanndleMessage);
+      }
+
+      dd.ready(function() {
+          dd.runtime.permission.requestAuthCode({
+              corpId: "{:config('CorpId')}",
+              onSuccess: function(result) {
+                  window.location = "http://{$Think.server.HTTP_HOST}/autologin/dingAppLogin/code/"+result.code;
+                  /*{
+                      code: 'hYLK98jkf0m' //string authCode
+                  }*/
+              },
+              onFail : function(err) {alert(JSON.stringify(err));}
+
+          });
+      });
+    </script>
+  </body>
+</html>

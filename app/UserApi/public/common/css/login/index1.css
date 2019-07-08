@@ -1,0 +1,137 @@
+body {
+    background-image: url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg);
+    background-repeat: no-repeat;
+    background-position: center 110px;
+    background-size: 100%;
+    background-color: #f0f2f5
+}
+
+.container {
+    height: 100vh;
+}
+
+.logo {
+    margin: 70px 0 35px 0
+}
+
+.selected {
+    border-bottom: 2px solid #FF4500;
+    color: #FF4500
+}
+
+.select {
+    margin-bottom: 24px
+}
+
+.select a {
+    color: black;
+    transition: color 0.3s;
+    -moz-transition: color 0.3s;
+ /* Firefox 4 */
+    -webkit-transition: color 0.3s;
+ /* Safari and Chrome */
+    -o-transition: color 0.3s;
+ /* Opera */
+}
+
+.select a:hover {
+    color: #FF4500
+}
+
+.select a div {
+    float: left;
+    padding: 12px 16px;
+}
+
+.login_form .notice {
+    margin: 0 0 24px;
+    display: none;
+}
+
+.login_form .notice div div {
+    width: 100%;
+    text-align: left;
+    border: 1px solid #ffa39e;
+    padding: 8px 11px;
+    padding-left: 35px;
+    border-radius: 4px;
+    height: 39px;
+    font-size: 14px;
+    background-color: #fff1f0
+}
+
+.login_form input {
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    padding: 6px 11px;
+    padding-left: 30px;
+    border-radius: 4px;
+    height: 40px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s;
+    -moz-transition: border 0.3s;
+ /* Firefox 4 */
+    -webkit-transition: border 0.3s;
+ /* Safari and Chrome */
+    -o-transition: border 0.3s;
+ /* Opera */
+}
+
+.login_form input:hover {
+    border: 1px solid #FF4500;
+}
+
+.login_form input::-webkit-input-placeholder {
+    color: rgba(0,0,0,.25);
+}
+
+.login_form input::-moz-placeholder {
+   /* Mozilla Firefox 19+ */
+    color: rgba(0,0,0,.25);
+}
+
+.login_form input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: rgba(0,0,0,.25);
+}
+
+.login_form input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+    color: rgba(0,0,0,.25);
+}
+
+.login_form label {
+    font-weight: normal
+}
+
+.login_input_err {
+    border: 1px solid #FF4500 !important;
+}
+
+.login-btn {
+    width: 100%;
+    margin-top: 24px;
+    outline: none;
+    color: #fff;
+    background-color: #FF4500;
+    border-color: #FF4500;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 0 rgba(0,0,0,.045);
+    border-radius: 4px;
+    height: 40px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: 1px solid #d9d9d9;
+    transition: background-color 0.3s;
+    -moz-transition: background-color 0.3s;
+ /* Firefox 4 */
+    -webkit-transition: background-color 0.3s;
+ /* Safari and Chrome */
+    -o-transition: background-color 0.3s;
+ /* Opera */
+}
+
+.login-btn:hover {
+    background-color: #ff8355;
+}
